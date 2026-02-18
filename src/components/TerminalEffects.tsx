@@ -1,6 +1,6 @@
-import {useState, useEffect, type ReactNode} from 'react';
+import {useState, useEffect} from 'react';
 
-export const TerminalEffects = ({children}: {children: ReactNode}) => {
+export const TerminalEffects = () => {
   const [isGlitching, setIsGlitching] = useState(false);
 
   useEffect(() => {
@@ -19,6 +19,6 @@ export const TerminalEffects = ({children}: {children: ReactNode}) => {
   }, []);
 
   return (
-    <div className={`terminal-overlay ${isGlitching ? 'screen-glitch' : ''}`} >{children}</div>
+    <div className={`terminal-overlay ${isGlitching ? 'screen-glitch' : ''}`} />
   );
 };

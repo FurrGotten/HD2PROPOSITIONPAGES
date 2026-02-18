@@ -4,14 +4,15 @@ import {TerminalEffects} from './components';
 
 function App() {
   return (
-    <TerminalEffects>
+    <>
+      <TerminalEffects />
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/spear" element={<SpearPage />} />
         </Routes>
       </Router>
-    </TerminalEffects>
+    </>
   );
 }
 
