@@ -1,0 +1,17 @@
+.spear-page-base {
+    width: 100%;
+    position: relative;
+    .static-bg {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        background-image: url('src/assets/HD2_TV_bg.png');
+    }
+    .content {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}

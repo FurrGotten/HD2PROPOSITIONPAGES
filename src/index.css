@@ -1,14 +1,52 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    /* The iconic Helldivers Yellow */
+    --hd-yellow: #ffe81f;
+    --hd-bg: #0a0a0a;
+    --hd-bg-l: #272727;
+    --hd-text: #e1e1e1;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+    /* Font: "FS Sinclair" or "Agency FB" are close,
+       but "Roboto Condensed" is a great free alternative */
+    font-family: 'Roboto Condensed', 'Inter', 'Impact', sans-serif;
+    line-height: 1.2;
+    font-weight: 700;
+    text-transform: uppercase; /* Most HD2 UI is uppercase */
+    letter-spacing: 0.05em;
+
+    color-scheme: dark;
+    color: var(--hd-text);
+    background-color: var(--hd-bg);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, .critical-info {
+    color: var(--hd-yellow);
+    text-shadow: 0 0 10px rgba(255, 232, 31, 0.5);
+}
+
+body {
+    margin: 0;
+}
+
+body::before {
+    content: " ";
+    display: block;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(
+            rgba(18, 16, 16, 0) 50%,
+            rgba(0, 0, 0, 0.1) 50%
+    ), linear-gradient(
+            90deg,
+            rgba(255, 0, 0, 0.03),
+            rgba(0, 255, 0, 0.01),
+            rgba(0, 0, 255, 0.03)
+    );
+    z-index: 9999;
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
 }
