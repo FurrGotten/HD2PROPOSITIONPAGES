@@ -15,15 +15,15 @@
 
     color-scheme: dark;
     color: var(--hd-text);
-    background-color: var(--hd-bg);
+    background-color: var(--hd-bg-l);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-h1, .critical-info {
+.critical-info {
     color: var(--hd-yellow);
     text-shadow: 0 0 10px rgba(255, 232, 31, 0.5);
 }
@@ -36,7 +36,10 @@ body::before {
     content: " ";
     display: block;
     position: fixed;
-    top: 0; left: 0; bottom: 0; right: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
     background: linear-gradient(
             rgba(18, 16, 16, 0) 50%,
             rgba(0, 0, 0, 0.1) 50%
@@ -49,4 +52,45 @@ body::before {
     z-index: 9999;
     background-size: 100% 4px, 3px 100%;
     pointer-events: none;
+}
+
+@keyframes scanline-walk {
+    0% { top: -10%; }
+    100% { top: 110%; }
+}
+
+@keyframes glitch-skew {
+    0% { transform: skew(0deg); filter: hue-rotate(0deg); }
+    20% { transform: skew(3deg); filter: hue-rotate(90deg); }
+    21% { transform: skew(-3deg); filter: hue-rotate(0deg); }
+    100% { transform: skew(0deg); }
+}
+
+.terminal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+/* The "Walking" Line */
+.terminal-overlay::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: rgba(255, 232, 31, 0.1); /* Use your --hd-yellow */
+    box-shadow: 0 0 10px rgba(255, 232, 31, 0.2);
+    animation: scanline-walk 8s linear infinite;
+    opacity: 0.5;
+}
+
+/* Intermittent Glitch Class */
+.screen-glitch {
+    animation: glitch-skew 0.3s ease-in-out;
 }

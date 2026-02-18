@@ -2,4 +2,13 @@
     .image-holder, .image-holder img {
         height: 40vh;
     }
+    .image-holder {
+        margin-bottom: 2rem;
+    }
+    .text-holder {
+        max-width: 96vw;
+        width: 1280px;
+    }
+    flex-direction: column;
+    text-align: center;
 }
