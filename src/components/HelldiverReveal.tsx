@@ -9,7 +9,7 @@ interface HelldiverRevealProps {
 
 export const HelldiverReveal = ({children, width = 'fit-content'}: HelldiverRevealProps) => {
   const {ref, inView} = useInView({
-    threshold: 0.25,
+    threshold: 0.40,
     triggerOnce: true
   });
 

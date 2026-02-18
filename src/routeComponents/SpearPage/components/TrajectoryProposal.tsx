@@ -1,0 +1,62 @@
+import {useEffect, useState} from 'react';
+import {Hologram} from '../../../components';
+import OriginalTrajectory from '../../../assets/trajectoryAssets/OriginalSpearTrajectory.png';
+import NewSpearTrajectory from '../../../assets/trajectoryAssets/NewSpearTrajectory.png';
+
+import './CommonStyles.css';
+import './TrajectoryProposalStyles.css';
+
+interface TrajectoryProps {
+  manual: boolean;
+  step?: number;
+}
+
+export function TrajectoryProposal({manual = false, step = 0}: TrajectoryProps) {
+  const [currentStep, setCurrentStep] = useState<number>(step);
+
+  useEffect(() => {
+    if (manual && currentStep !== 3) {
+      setCurrentStep(currentStep + 1);
+    }
+  });
+
+  const steps = [OriginalTrajectory, NewSpearTrajectory];
+
+  return <section className="common-spear-base trajectory-spear-base">
+    {currentStep === 0 && <div className="text-holder">
+      <h1>The current FAF Spear flight path is not only a departure from its Old Earth heritage but is fundamentally
+        tactically flawed. By prioritizing a shallow direct-engagement arc, the missile consistently targets the most
+        reinforced frontal plating or 'spaced armor' components (such as the Factory Strider’s chassis or Vox
+        plates).</h1>
+      <h1 className="critical-info">
+        Operational Hazards include:
+      </h1>
+      <h1 className="danger-info">
+        <h1>---Environmental Interference: The low-altitude trajectory frequently results in premature detonation
+          against terrain, flora, or fellow Helldivers.---</h1>
+
+        <h1>---Diminished Lethality: High-damage yields are wasted against heavy armor plates rather than vital
+          internal components.---</h1>
+      </h1>
+      <h1>Even in rare instances of top-down impact, the lack of a true 'Top-Attack' logic means the Spear fails to
+        exploit the thinner roof armor of Automaton and Terminid heavies (As if they have one, but on that later). We
+        are left with a weapon that is more likely
+        to hit a bush than an enemy roof.</h1>
+    </div>}
+    <div className="image-holder">
+      <Hologram className="image">
+        <img src={steps[currentStep]} alt="Trajectory" className="image" />
+      </Hologram>
+    </div>
+    {currentStep === 1 &&
+      <div className="text-holder">
+        <h1>Scientists and Engineering proposes the <span
+          className="critical-info">Advanced Top-Attack Protocol (ATAP)</span> demonstrated above. This trajectory
+          modification utilizes a high-altitude ascent to clear environmental obstructions, followed by a steep,
+          gravity-assisted vertical descent. By prioritizing terminal velocity and a near-90-degree impact angle, the
+          Spear effectively bypasses reinforced frontal plating to strike the vulnerable top-armor of heavy-class
+          threats with surgical precision.</h1>
+      </div>
+    }
+  </section>;
+}

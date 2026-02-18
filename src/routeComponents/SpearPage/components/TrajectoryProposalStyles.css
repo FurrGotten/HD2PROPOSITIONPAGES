@@ -1,0 +1,9 @@
+.trajectory-spear-base {
+    .trajectory-spear-base {
+        width: 1400px;
+    }
+    .image-holder img{
+        width: 1280px;
+        max-width: 96vw;
+    }
+}

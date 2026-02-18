@@ -4,4 +4,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    text-align: center;
+    .image-holder {
+        margin-bottom: 2rem;
+    }
+    .text-holder {
+        max-width: 96vw;
+        width: 1280px;
+    }
 }

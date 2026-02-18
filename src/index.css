@@ -1,12 +1,10 @@
 :root {
-    /* The iconic Helldivers Yellow */
     --hd-yellow: #ffe81f;
+    --hd-danger: #BC2E25;
     --hd-bg: #0a0a0a;
     --hd-bg-l: #272727;
     --hd-text: #e1e1e1;
 
-    /* Font: "FS Sinclair" or "Agency FB" are close,
-       but "Roboto Condensed" is a great free alternative */
     font-family: 'Roboto Condensed', 'Inter', 'Impact', sans-serif;
     line-height: 1.2;
     font-weight: 700;
@@ -30,6 +28,11 @@
     text-shadow: 0 0 10px rgba(255, 232, 31, 0.5);
 }
 
+.danger-info {
+    color: var(--hd-danger);
+    text-shadow: 0 0 10px rgba(188, 46, 37, 0.5);
+}
+
 h1 {
     font-size: clamp(1rem, 1vw + 1rem, 2rem);
     line-height: 0.95; /* Tighter vertical spacing */
@@ -39,6 +42,7 @@ h1 {
 
 body {
     margin: 0;
+    overflow-x: hidden;
 }
 
 body::before {
