@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import {Hologram} from '../../../components';
 import OriginalTrajectory from '../../../assets/trajectoryAssets/OriginalSpearTrajectory.png';
 import NewSpearTrajectory from '../../../assets/trajectoryAssets/NewSpearTrajectory.png';
+import trajectoriesNew from '../../../assets/trajectoryAssets/tragectoriesNewSpear.png';
 
 import './CommonStyles.css';
 import './TrajectoryProposalStyles.css';
@@ -20,7 +21,7 @@ export function TrajectoryProposal({manual = false, step = 0}: TrajectoryProps) 
     }
   });
 
-  const steps = [OriginalTrajectory, NewSpearTrajectory];
+  const steps = [OriginalTrajectory, NewSpearTrajectory, trajectoriesNew];
 
   return <section className="common-spear-base trajectory-spear-base">
     {currentStep === 0 && <div className="text-holder">
@@ -56,6 +57,14 @@ export function TrajectoryProposal({manual = false, step = 0}: TrajectoryProps) 
           gravity-assisted vertical descent. By prioritizing terminal velocity and a near-90-degree impact angle, the
           Spear effectively bypasses reinforced frontal plating to strike the vulnerable top-armor of heavy-class
           threats with surgical precision.</h1>
+      </div>
+    }
+    {currentStep === 2 &&
+      <div className="text-holder">
+        <h1>The <span className="critical-info">ATAP</span> system utilizes dynamic pathfinding to adjust flight altitude based on target proximity. This
+          includes experimental 'vertical-stall' trajectories for close-range threats, ensuring that even nearby targets
+          are neutralized from above. While this increases Time-to-Hit (TTH), the trade-off is undeniable: superior
+          clearing of obstacles, optimized impact angles, and true fire-and-forget reliability at any distance.</h1>
       </div>
     }
   </section>;
