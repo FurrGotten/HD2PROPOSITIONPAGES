@@ -1,6 +1,6 @@
 import './../CommonStyles.css';
 import './IntroStyles.css';
-import SpearIcon from '@/assets/FAF_SpearIcon.png';
+import SpearIcon from '@/assets/spearRelatedAssets/FAF_SpearIcon.png';
 import {Hologram} from '@/components';
 
 export function Intro() {

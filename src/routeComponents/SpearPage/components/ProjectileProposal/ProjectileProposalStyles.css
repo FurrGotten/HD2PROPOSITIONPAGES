@@ -1,0 +1,33 @@
+.projectile-spear-base {
+    .text-holder {
+        width: 98vw;
+    }
+    h1 {
+        font-size: clamp(.7rem, .7vw + .7rem, 1.6rem);
+    }
+    .two-projectiles {
+        max-width: 96vw;
+        display: flex;
+        justify-content: space-between;
+        .projectile-section {
+            width: 49%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            img {
+                max-width: 70%;
+                max-height: 50vh;
+            }
+            .heat-text {
+                text-align: left;
+            }
+            .tandem-text {
+                text-align: right;
+            }
+        }
+        h1 {
+            font-size: clamp(.7rem, .7vw + .7rem, 1.6rem);
+        }
+    }
+}

@@ -1,6 +1,6 @@
 import './SpearStyle.css';
 import {useSearchParams} from 'react-router-dom';
-import {Intro, TrajectoryProposal, EndNotes} from './components';
+import {Intro, TrajectoryProposal, ProjectileProposal, EndNotes} from './components';
 import {HelldiverReveal} from '@/components';
 
 export function SpearPage() {
@@ -14,6 +14,7 @@ export function SpearPage() {
     <HelldiverReveal><TrajectoryProposal manual={manual} step={1}/></HelldiverReveal>,
     <HelldiverReveal><TrajectoryProposal manual={manual} step={2}/></HelldiverReveal>,
     <HelldiverReveal><TrajectoryProposal manual={manual} step={3}/></HelldiverReveal>,
+    <HelldiverReveal><ProjectileProposal/></HelldiverReveal>,
     <HelldiverReveal><EndNotes/></HelldiverReveal>,
   ];
 
