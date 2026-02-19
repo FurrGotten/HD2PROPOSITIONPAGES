@@ -15,6 +15,7 @@ export function SpearPage() {
     <HelldiverReveal><TrajectoryProposal manual={manual} step={2}/></HelldiverReveal>,
     <HelldiverReveal><TrajectoryProposal manual={manual} step={3}/></HelldiverReveal>,
     <HelldiverReveal><ProjectileProposal/></HelldiverReveal>,
+    <HelldiverReveal><ProjectileProposal step={1}/></HelldiverReveal>,
     <HelldiverReveal><EndNotes/></HelldiverReveal>,
   ];
 
