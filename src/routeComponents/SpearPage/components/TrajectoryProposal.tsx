@@ -3,6 +3,7 @@ import {Hologram} from '../../../components';
 import OriginalTrajectory from '../../../assets/trajectoryAssets/OriginalSpearTrajectory.png';
 import NewSpearTrajectory from '../../../assets/trajectoryAssets/NewSpearTrajectory.png';
 import trajectoriesNew from '../../../assets/trajectoryAssets/tragectoriesNewSpear.png';
+import HelpYourFriendWIthASpear from '../../../assets/trajectoryAssets/HelpYourFriendWIthASpear.png';
 
 import './CommonStyles.css';
 import './TrajectoryProposalStyles.css';
@@ -21,7 +22,7 @@ export function TrajectoryProposal({manual = false, step = 0}: TrajectoryProps) 
     }
   });
 
-  const steps = [OriginalTrajectory, NewSpearTrajectory, trajectoriesNew];
+  const steps = [OriginalTrajectory, NewSpearTrajectory, trajectoriesNew, HelpYourFriendWIthASpear];
 
   return <section className="common-spear-base trajectory-spear-base">
     {currentStep === 0 && <div className="text-holder">
@@ -61,10 +62,19 @@ export function TrajectoryProposal({manual = false, step = 0}: TrajectoryProps) 
     }
     {currentStep === 2 &&
       <div className="text-holder">
-        <h1>The <span className="critical-info">ATAP</span> system utilizes dynamic pathfinding to adjust flight altitude based on target proximity. This
+        <h1>The <span className="critical-info">ATAP</span> system utilizes dynamic pathfinding to adjust flight
+          altitude based on target proximity. This
           includes experimental 'vertical-stall' trajectories for close-range threats, ensuring that even nearby targets
           are neutralized from above. While this increases Time-to-Hit (TTH), the trade-off is undeniable: superior
           clearing of obstacles, optimized impact angles, and true fire-and-forget reliability at any distance.</h1>
+      </div>
+    }
+    {currentStep === 3 &&
+      <div className="text-holder">
+        <h1>The <span className="critical-info">ATAP</span> trajectory enables total indirect fire over urban and mountainous terrain. By integrating the
+          <span className="critical-info"> squad’s marking system</span> into the weapon's targeting array, the Spear can now lock onto threats without direct
+          line-of-sight. This allows for precision support of stealth divers or separated squadmates, effectively
+          bypassing enemy jamming through the use of <span className="critical-info">Super Earth’s superior tactical data-link.</span></h1>
       </div>
     }
   </section>;

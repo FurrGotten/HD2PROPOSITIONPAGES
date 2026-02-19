@@ -13,6 +13,7 @@ export function SpearPage() {
     <HelldiverReveal><TrajectoryProposal manual={manual} step={0}/></HelldiverReveal>,
     <HelldiverReveal><TrajectoryProposal manual={manual} step={1}/></HelldiverReveal>,
     <HelldiverReveal><TrajectoryProposal manual={manual} step={2}/></HelldiverReveal>,
+    <HelldiverReveal><TrajectoryProposal manual={manual} step={3}/></HelldiverReveal>,
   ];
 
   return <section className="spear-page-base">
