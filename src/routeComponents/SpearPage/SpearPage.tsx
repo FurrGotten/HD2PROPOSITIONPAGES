@@ -1,7 +1,7 @@
 import './SpearStyle.css';
 import {useSearchParams} from 'react-router-dom';
 import {Intro, TrajectoryProposal, EndNotes} from './components';
-import {HelldiverReveal} from '../../components';
+import {HelldiverReveal} from '@/components';
 
 export function SpearPage() {
   const [searchParams] = useSearchParams();

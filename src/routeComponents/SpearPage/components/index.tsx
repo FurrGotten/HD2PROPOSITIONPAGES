@@ -1,3 +1,3 @@
-export {TrajectoryProposal} from './TrajectoryProposal.tsx'
-export {Intro} from './Intro.tsx'
+export {TrajectoryProposal} from './TrajectoryProposal/TrajectoryProposal.tsx'
+export {Intro} from './IntroStyles/Intro.tsx'
 export {EndNotes} from './EndNotes.tsx'

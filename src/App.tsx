@@ -1,6 +1,6 @@
 import {HashRouter as Router, Route, Routes} from 'react-router-dom';
-import {HomePage, SpearPage} from './routeComponents';
-import {TerminalEffects} from './components';
+import {HomePage, SpearPage} from '@/routeComponents';
+import {TerminalEffects} from '@/components';
 
 function App() {
   return (

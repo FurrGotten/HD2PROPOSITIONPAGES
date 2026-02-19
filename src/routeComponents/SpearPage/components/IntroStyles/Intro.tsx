@@ -1,7 +1,7 @@
-import './CommonStyles.css';
+import './../CommonStyles.css';
 import './IntroStyles.css';
-import SpearIcon from '../../../assets/FAF_SpearIcon.png';
-import {Hologram} from '../../../components';
+import SpearIcon from '@/assets/FAF_SpearIcon.png';
+import {Hologram} from '@/components';
 
 export function Intro() {
   return <section className="common-spear-base intro-spear-base">
