@@ -1,4 +1,3 @@
-import {useEffect, useState} from 'react';
 import {Hologram} from '@/components';
 import OriginalTrajectory from '@/assets/trajectoryAssets/OriginalSpearTrajectory.png';
 import NewSpearTrajectory from '@/assets/trajectoryAssets/NewSpearTrajectory.png';
@@ -9,23 +8,15 @@ import '@/routeComponents/SpearPage/components/CommonStyles.css';
 import './TrajectoryProposalStyles.css';
 
 interface TrajectoryProps {
-  manual: boolean;
   step?: number;
 }
 
-export function TrajectoryProposal({manual = false, step = 0}: TrajectoryProps) {
-  const [currentStep, setCurrentStep] = useState<number>(step);
-
-  useEffect(() => {
-    if (manual && currentStep !== 3) {
-      setCurrentStep(currentStep + 1);
-    }
-  });
+export function TrajectoryProposal({step = 0}: TrajectoryProps) {
 
   const steps = [OriginalTrajectory, NewSpearTrajectory, trajectoriesNew, HelpYourFriendWIthASpear];
 
   return <section className="common-spear-base trajectory-spear-base">
-    {currentStep === 0 && <div className="text-holder">
+    {step === 0 && <div className="text-holder">
       <h1>The current FAF Spear flight path is not only a departure from its Old Earth heritage but is fundamentally
         tactically flawed. By prioritizing a shallow direct-engagement arc, the missile consistently targets the most
         reinforced frontal plating or 'spaced armor' components (such as the Factory Strider’s chassis or Vox
@@ -47,10 +38,10 @@ export function TrajectoryProposal({manual = false, step = 0}: TrajectoryProps) 
     </div>}
     <div className="image-holder">
       <Hologram className="image">
-        <img src={steps[currentStep]} alt="Trajectory" className="image" />
+        <img src={steps[step]} alt="Trajectory" className="image" />
       </Hologram>
     </div>
-    {currentStep === 1 &&
+    {step === 1 &&
       <div className="text-holder">
         <h1>Scientists and Engineering proposes the <span
           className="critical-info">Advanced Top-Attack Protocol (ATAP)</span> demonstrated above. This trajectory
@@ -60,7 +51,7 @@ export function TrajectoryProposal({manual = false, step = 0}: TrajectoryProps) 
           threats with surgical precision.</h1>
       </div>
     }
-    {currentStep === 2 &&
+    {step === 2 &&
       <div className="text-holder">
         <h1>The <span className="critical-info">ATAP</span> system utilizes dynamic pathfinding to adjust flight
           altitude based on target proximity. This
@@ -69,7 +60,7 @@ export function TrajectoryProposal({manual = false, step = 0}: TrajectoryProps) 
           clearing of obstacles, optimized impact angles, and true fire-and-forget reliability at any distance.</h1>
       </div>
     }
-    {currentStep === 3 &&
+    {step === 3 &&
       <div className="text-holder">
         <h1>The <span className="critical-info">ATAP</span> trajectory enables total indirect fire over urban and
           mountainous terrain. By integrating the

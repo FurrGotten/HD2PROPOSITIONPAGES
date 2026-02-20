@@ -10,14 +10,14 @@ export function SpearPage() {
   const manual: boolean = !!searchParams.get('manual');
 
   const components = [
-    <HelldiverReveal key="Intro"><Intro /></HelldiverReveal>,
-    <HelldiverReveal key="TG0"><TrajectoryProposal manual={manual} step={0}/></HelldiverReveal>,
-    <HelldiverReveal key="TG1"><TrajectoryProposal manual={manual} step={1}/></HelldiverReveal>,
-    <HelldiverReveal key="TG2"><TrajectoryProposal manual={manual} step={2}/></HelldiverReveal>,
-    <HelldiverReveal key="TG3"><TrajectoryProposal manual={manual} step={3}/></HelldiverReveal>,
-    <HelldiverReveal key="PG0"><ProjectileProposal/></HelldiverReveal>,
-    <HelldiverReveal key="PG1"><ProjectileProposal step={1}/></HelldiverReveal>,
-    <HelldiverReveal key="PG2"><ProjectileProposal step={2}/></HelldiverReveal>,
+    <HelldiverReveal key="Intro"><Intro/></HelldiverReveal>,
+    <HelldiverReveal key="TG0"><TrajectoryProposal key="TG0Component" step={0}/></HelldiverReveal>,
+    <HelldiverReveal key="TG1"><TrajectoryProposal key="TG1Component" step={1}/></HelldiverReveal>,
+    <HelldiverReveal key="TG2"><TrajectoryProposal key="TG2Component" step={2}/></HelldiverReveal>,
+    <HelldiverReveal key="TG3"><TrajectoryProposal key="TG3Component" step={3}/></HelldiverReveal>,
+    <HelldiverReveal key="PG0"><ProjectileProposal key="PG0Component"/></HelldiverReveal>,
+    <HelldiverReveal key="PG1"><ProjectileProposal key="PG1Component" step={1}/></HelldiverReveal>,
+    <HelldiverReveal key="PG2"><ProjectileProposal key="PG2Component" step={2}/></HelldiverReveal>,
     <HelldiverReveal key="END"><EndNotes/></HelldiverReveal>,
   ];
 
