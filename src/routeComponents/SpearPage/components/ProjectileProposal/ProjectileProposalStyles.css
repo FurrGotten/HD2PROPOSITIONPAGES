@@ -4,6 +4,7 @@
     }
     img {
         max-height: 40vh;
+        max-width: 90vw;
     }
     .heat-projectile-section {
         img {

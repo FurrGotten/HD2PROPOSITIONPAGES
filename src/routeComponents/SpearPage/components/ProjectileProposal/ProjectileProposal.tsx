@@ -19,7 +19,7 @@ export function ProjectileProposal({step = 0}: {step?: number}) {
       </h1>
     </div>}
 
-    {step === 0 && <div className="projectile-section">
+    {step === 1 && <div className="projectile-section">
       <Hologram>
         <img src={tandemImage} alt="tandem" />
       </Hologram>
@@ -35,7 +35,7 @@ export function ProjectileProposal({step = 0}: {step?: number}) {
           focused blast into the target’s exposed vital core."</h1>
       </div>
     </div>}
-    {step === 1 && <div className="heat-projectile-section">
+    {step === 2 && <div className="heat-projectile-section">
       <Hologram>
         <img src={heatImage} alt="HEAT" />
       </Hologram>
