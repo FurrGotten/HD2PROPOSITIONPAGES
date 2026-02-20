@@ -20,6 +20,7 @@ export function EndNotes() {
         passive—trading general utility for optimized lock-on performance. This follows the successful precedent of
         specialized armor for sidearms, ensuring the Spear becomes the backbone of a dedicated anti-armor squad.
       </h1>
+      <h1>Helldiver Communication management and some Helldivers proposed a switch to the old fire mode.</h1>
     </div>
   </section>;
 }
