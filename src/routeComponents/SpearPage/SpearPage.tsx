@@ -17,7 +17,7 @@ export function SpearPage() {
     <HelldiverReveal key="TG3"><TrajectoryProposal manual={manual} step={3}/></HelldiverReveal>,
     <HelldiverReveal key="PG0"><ProjectileProposal/></HelldiverReveal>,
     <HelldiverReveal key="PG1"><ProjectileProposal step={1}/></HelldiverReveal>,
-    <HelldiverReveal key="PG1"><ProjectileProposal step={2}/></HelldiverReveal>,
+    <HelldiverReveal key="PG2"><ProjectileProposal step={2}/></HelldiverReveal>,
     <HelldiverReveal key="END"><EndNotes/></HelldiverReveal>,
   ];
 
