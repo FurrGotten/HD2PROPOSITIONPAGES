@@ -1,5 +1,5 @@
 import {HashRouter as Router, Route, Routes} from 'react-router-dom';
-import {HomePage, SpearPage} from '@/routeComponents';
+import {HomePage, SpearPage, CloseSkyProjectPage} from '@/routeComponents';
 import {TerminalEffects} from '@/components';
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/spear" element={<SpearPage />} />
+          <Route path="/close_sky_project" element={<CloseSkyProjectPage />} />
         </Routes>
       </Router>
     </>

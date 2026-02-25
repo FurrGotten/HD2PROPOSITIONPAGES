@@ -6,11 +6,94 @@
     align-items: center;
     flex-direction: column;
     text-align: center;
+
     .image-holder {
         margin-bottom: 2rem;
     }
+
     .text-holder {
         max-width: 96vw;
         width: 1280px;
+    }
+}
+
+
+.gray-noise::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.15;
+    animation: shift 0.2s linear infinite;
+}
+
+@keyframes shift {
+    0% {
+        transform: translate(0, 0);
+    }
+    10% {
+        transform: translate(-1%, -1%);
+    }
+    30% {
+        transform: translate(1%, -2%);
+    }
+    50% {
+        transform: translate(-0.5%, 1%);
+    }
+    70% {
+        transform: translate(2%, 0.5%);
+    }
+    90% {
+        transform: translate(-1.5%, -1.5%);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.console-noise::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    /* Inline SVG with a color matrix to force green tones */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0, 0 1 0 0 0, 0 0 0 0 0, 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.25;
+    mix-blend-mode: screen;
+    animation: jitter 0.15s steps(2) infinite;
+}
+
+.console-noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+            rgba(0, 0, 0, 0) 0px,
+            rgba(0, 0, 0, 0.4) 2px,
+            rgba(0, 0, 0, 0.1) 4px
+    );
+    pointer-events: none;
+}
+
+@keyframes jitter {
+    0% {
+        transform: translate(0, 0);
+    }
+    25% {
+        transform: translate(-1%, 1%);
+    }
+    50% {
+        transform: translate(1%, -1%);
+    }
+    75% {
+        transform: translate(-0.5%, -0.5%);
+    }
+    100% {
+        transform: translate(0.5%, 0.5%);
     }
 }

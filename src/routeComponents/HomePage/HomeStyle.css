@@ -17,5 +17,35 @@
         position: absolute;
         left: 0;
         top: 0;
+        min-width: 100vw;
+        max-width: 90vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        .menu-row {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .menu-link {
+                min-height: 400px;
+                .menu-noise-ico {
+                    width: 400px;
+                    height: 400px;
+                    max-width: 90vw;
+                    position: relative;
+                    overflow: hidden;
+                    background-color: rgba(0, 26, 0, 0.4);
+                    /*border: 1px solid #005500;*/
+                    /*box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.2);*/
+                }
+            }
+            .menu-link, img {
+                max-width: 90vw;
+                width: 400px;
+            }
+        }
     }
 }
