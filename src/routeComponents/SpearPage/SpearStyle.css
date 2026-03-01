@@ -18,3 +18,13 @@
         top: 0;
     }
 }
+
+.simple-spear-page-base {
+    .static-bg {
+        background-image: none;
+    }
+    .content {
+        padding-top: 50px;
+        padding-bottom: 70px;
+    }
+}

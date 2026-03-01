@@ -7,3 +7,21 @@
         max-width: 96vw;
     }
 }
+
+.trajectory-spear-base.simple-trajectory-spear-base.common-simple-spear-base {
+    .text-holder {
+        h1 {
+            font-size: 6rem;
+        }
+    }
+    .trajectory-spear-base {
+        width: 90vw;
+    }
+    .image-holder img{
+        width: 90vw;
+        max-width: 90vw;
+    }
+    img {
+        max-height: none;
+    }
+}

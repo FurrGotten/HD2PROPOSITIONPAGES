@@ -5,9 +5,9 @@ import './ProjectileProposalStyles.css';
 import tandemImage from '@/assets/spearRelatedAssets/TandemChargeHD2.png';
 import heatImage from '@/assets/spearRelatedAssets/HEAT_expanded_HD2.png';
 
-export function ProjectileProposal({step = 0}: {step?: number}) {
-  return <section className="common-spear-base projectile-spear-base">
-    {step === 0 && <div className="text-holder">
+export function ProjectileProposal({step = 0, simple}: {step?: number, simple?: boolean}) {
+  return <section className={'common-spear-base projectile-spear-base' + (simple ? ' simple-projectile-spear-base common-simple-spear-base' : '')}>
+    {step === 0 && !simple && <div className="text-holder">
       <h1>
         While the <span className="critical-info">ATAP</span> trajectory successfully bypasses reinforced frontal plates
         and spaced armour of Titans, Tanks, Behemoth Chargers. Certain high-threat targets—such as
@@ -19,7 +19,7 @@ export function ProjectileProposal({step = 0}: {step?: number}) {
       </h1>
     </div>}
 
-    {step === 1 && <div className="projectile-section">
+    {step === 1 && !simple && <div className="projectile-section">
       <Hologram>
         <img src={tandemImage} alt="tandem" />
       </Hologram>
@@ -39,7 +39,7 @@ export function ProjectileProposal({step = 0}: {step?: number}) {
       <Hologram>
         <img src={heatImage} alt="HEAT" />
       </Hologram>
-      <div className="text-holder">
+      {!simple && <div className="text-holder">
         <h1>The <span className="critical-info">Gravity-Assisted HEAT (High-Explosive Anti-Tank)</span> payload
           utilizes the Spear’s steep terminal descent
           to achieve maximum lethality. By combining traditional copper-lining with heavy-metal composites, the
@@ -52,7 +52,8 @@ export function ProjectileProposal({step = 0}: {step?: number}) {
           components with a single impact. All of this combined also allows the shield of the Illuminate shield fall
           from contact milliseconds before the liner jet fires out, allowing to reach main body of harvesters and
           their drop ships.</h1>
-      </div>
+      </div>}
     </div>
-    }  </section>;
+    }
+  </section>;
 }

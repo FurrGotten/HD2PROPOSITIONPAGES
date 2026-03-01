@@ -17,6 +17,10 @@
     }
 }
 
+.common-simple-spear-base {
+    height: fit-content;
+}
+
 
 .gray-noise::before {
     content: "";

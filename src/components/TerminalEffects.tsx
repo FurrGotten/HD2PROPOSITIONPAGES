@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 
-export const TerminalEffects = () => {
+export const TerminalEffects = ({scanLine = true} : {scanLine? : boolean}) => {
   const [isGlitching, setIsGlitching] = useState(false);
 
   useEffect(() => {
@@ -19,6 +19,6 @@ export const TerminalEffects = () => {
   }, []);
 
   return (
-    <div className={`terminal-overlay ${isGlitching ? 'screen-glitch' : ''}`} />
+    <div className={`${scanLine ?'terminal-overlay' : ''} ${isGlitching ? 'screen-glitch' : ''}`} />
   );
 };

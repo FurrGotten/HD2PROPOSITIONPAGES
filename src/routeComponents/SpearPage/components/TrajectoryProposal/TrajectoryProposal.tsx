@@ -9,14 +9,20 @@ import './TrajectoryProposalStyles.css';
 
 interface TrajectoryProps {
   step?: number;
+  simple?: boolean;
 }
 
-export function TrajectoryProposal({step = 0}: TrajectoryProps) {
+export function TrajectoryProposal({step = 0, simple}: TrajectoryProps) {
 
   const steps = [OriginalTrajectory, NewSpearTrajectory, trajectoriesNew, HelpYourFriendWIthASpear];
 
-  return <section className="common-spear-base trajectory-spear-base">
-    {step === 0 && <div className="text-holder">
+  return <section className={'common-spear-base trajectory-spear-base' + (simple ? ' simple-trajectory-spear-base common-simple-spear-base' : '')}>
+    {step === 1 && simple &&
+      <div className="text-holder">
+        <h1 className="critical-info">HOW SPEAR SHOULD WORK</h1>
+      </div>
+    }
+    {step === 0 && !simple && <div className="text-holder">
       <h1>The current FAF Spear flight path is not only a departure from its Old Earth heritage but is fundamentally
         tactically flawed. By prioritizing a shallow direct-engagement arc, the missile consistently targets the most
         reinforced frontal plating or 'spaced armor' components (such as the Factory Strider’s chassis or Vox
@@ -41,7 +47,7 @@ export function TrajectoryProposal({step = 0}: TrajectoryProps) {
         <img src={steps[step]} alt="Trajectory" className="image" />
       </Hologram>
     </div>
-    {step === 1 &&
+    {step === 1 && !simple &&
       <div className="text-holder">
         <h1>Scientists and Engineering proposes the <span
           className="critical-info">Advanced Top-Attack Protocol (ATAP)</span> demonstrated above. This trajectory
@@ -51,7 +57,7 @@ export function TrajectoryProposal({step = 0}: TrajectoryProps) {
           threats with surgical precision.</h1>
       </div>
     }
-    {step === 2 &&
+    {step === 2 && !simple &&
       <div className="text-holder">
         <h1>The <span className="critical-info">ATAP</span> system utilizes dynamic pathfinding to adjust flight
           altitude based on target proximity. This
@@ -60,7 +66,7 @@ export function TrajectoryProposal({step = 0}: TrajectoryProps) {
           clearing of obstacles, optimized impact angles, and true fire-and-forget reliability at any distance.</h1>
       </div>
     }
-    {step === 3 &&
+    {step === 3 && !simple &&
       <div className="text-holder">
         <h1>The <span className="critical-info">ATAP</span> trajectory enables total indirect fire over urban and
           mountainous terrain. By integrating the

@@ -7,9 +7,9 @@ import {SlideWrapper} from '@/components/SlideWrapper';
 export function SpearPage() {
   const [searchParams] = useSearchParams();
 
-  const manual: boolean = !!searchParams.get('manual');
+  const mode: string | 'scroll' | 'manual' | 'simple' | null = searchParams.get('mode');
 
-  const components = [
+  const allComponents = [
     <HelldiverReveal key="Intro"><Intro/></HelldiverReveal>,
     <HelldiverReveal key="TG0"><TrajectoryProposal key="TG0Component" step={0}/></HelldiverReveal>,
     <HelldiverReveal key="TG1"><TrajectoryProposal key="TG1Component" step={1}/></HelldiverReveal>,
@@ -21,10 +21,20 @@ export function SpearPage() {
     <HelldiverReveal key="END"><EndNotes/></HelldiverReveal>,
   ];
 
-  return <section className="spear-page-base">
+  const pageModes = {
+    'scroll': allComponents,
+    'manual': <SlideWrapper slides={allComponents}/>,
+    'simple': [
+      <TrajectoryProposal key="TG2Component" simple step={1}/>,
+      <TrajectoryProposal key="TG2Component" simple step={3}/>,
+      <ProjectileProposal key="PG2Component" simple step={2}/>,
+    ]
+  }
+
+  return <section className={'spear-page-base' + (mode === 'simple' ? ' simple-spear-page-base' : '')}>
     <div className="static-bg" />
     <div className="content">
-      {manual ? components : <SlideWrapper slides={components}/>}
+      {!!mode && pageModes[mode as keyof typeof pageModes] ? pageModes[mode as keyof typeof pageModes] : pageModes['manual']}
     </div>
   </section>;
 }

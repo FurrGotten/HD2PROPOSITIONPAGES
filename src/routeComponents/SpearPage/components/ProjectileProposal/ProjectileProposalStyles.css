@@ -4,11 +4,23 @@
     }
     img {
         max-height: 40vh;
-        max-width: 90vw;
+        max-width: 80vw;
     }
     .heat-projectile-section {
         img {
             max-height: 60vh;
+        }
+    }
+}
+
+.projectile-spear-base.simple-projectile-spear-base.common-simple-spear-base {
+    img {
+        max-height: none;
+        max-width: 65vw;
+    }
+    .heat-projectile-section {
+        img {
+            max-height: none;
         }
     }
 }
