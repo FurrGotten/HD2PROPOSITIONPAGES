@@ -48,7 +48,12 @@ body {
     overflow-x: hidden;
 }
 
-body::before {
+.terminal-checker {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+.terminal-checker::before {
     content: " ";
     display: block;
     position: fixed;

@@ -1,7 +1,7 @@
 import './SpearStyle.css';
 import {useSearchParams} from 'react-router-dom';
 import {Intro, TrajectoryProposal, ProjectileProposal, EndNotes} from './components';
-import {HelldiverReveal} from '@/components';
+import {HelldiverReveal, TerminalEffects} from '@/components';
 import {SlideWrapper} from '@/components/SlideWrapper';
 
 export function SpearPage() {
@@ -31,7 +31,8 @@ export function SpearPage() {
     ]
   }
 
-  return <section className={'spear-page-base' + (mode === 'simple' ? ' simple-spear-page-base' : '')}>
+  return <section className={'spear-page-base terminal-checker' + (mode === 'simple' ? ' simple-spear-page-base' : '')}>
+    {mode !== 'simple' && <TerminalEffects/>}
     <div className="static-bg" />
     <div className="content">
       {!!mode && pageModes[mode as keyof typeof pageModes] ? pageModes[mode as keyof typeof pageModes] : pageModes['manual']}

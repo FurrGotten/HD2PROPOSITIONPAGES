@@ -2,10 +2,11 @@ import {Link} from 'react-router-dom';
 import SpearIcon from '@/assets/spearRelatedAssets/FAF_SpearIcon.png';
 
 import './HomeStyle.css';
-import {Hologram} from '@/components';
+import {Hologram, TerminalEffects} from '@/components';
 
 export function HomePage() {
-  return <section className="home-page-base">
+  return <section className="home-page-base terminal-checker">
+    <TerminalEffects />
     <div className="static-bg" />
     <div className="content">
       <div className="menu-row">
