@@ -1,5 +1,6 @@
-import React from 'react';
+import { useState }  from 'react';
 import './WarBoundCreatorPageStyle.css';
+import {SmallColorPicker} from '@/components';
 
 interface itemType {
   id: string;
@@ -14,11 +15,16 @@ interface itemType {
 type itemsType = itemType[];
 
 export function WarBoundCreatorPage() {
-  const [items, setItems] = React.useState<itemsType>([]);
-  // const [armourImage, armourImage] = React.useState<string>('');
+  const [items, setItems] = useState<itemsType>([]);
+  // const [armourImage, armourImage] = useState<string>('');
+
+  const [bgHex, setBgHex] = useState('#1a2327');
+  const [bordersHex, setBordersHex] = useState('#ff3131');
+  // const [glowHex, setGlowHex] = useState('#ff3131');
+  // const [headerBg1Hex, setHeaderBg1Hex] = useState('#1a1d21');
+  // const [headerBg2Hex, setHeaderBg2Hex] = useState('#25282c');
 
   // --- Helper Functions for State ---
-
   const addItem = () => {
     const newItem: itemType = {
       id: crypto.randomUUID(), // Generates a unique ID
@@ -42,7 +48,7 @@ export function WarBoundCreatorPage() {
   };
 
   return <section className="wbc-page-base">
-    <section className="warbound-frame">
+    <section className="warbound-frame" style={{backgroundColor: bgHex}}>
       <div className="warbond-header">
         <div className="line line-left"></div>
         <span className="text">PREMIUM WARBOND</span>
@@ -53,7 +59,16 @@ export function WarBoundCreatorPage() {
           <div className="frame-banner">
             <span className="frame-banner-text">ARMOR SETS</span>
           </div>
-          <div className="wb-armor-frame">
+          <div className="wb-armor-frame" style={{
+            border: `3px solid  ${bordersHex}`,
+            borderImage: `linear-gradient(
+            to bottom,
+            ${bordersHex} 35%,
+            transparent 35%,
+            transparent 65%,
+            ${bordersHex} 65%
+            ) 1`,
+          }}>
             <div className="wb-armor-inner">
 
             </div>
@@ -65,7 +80,16 @@ export function WarBoundCreatorPage() {
               <div className="frame-banner">
                 <span className="frame-banner-text">{item.header}</span>
               </div>
-              <div className="wb-item-frame">
+              <div className="wb-item-frame" style={{
+                border: `3px solid ${bordersHex}`,
+                borderImage: `linear-gradient(
+                to bottom,
+                ${bordersHex} 45%,
+                transparent 45%,
+                transparent 55%,
+                ${bordersHex} 55%
+                ) 1`
+              }}>
                 <div className="wb-item-inner">
 
                 </div>
@@ -76,9 +100,31 @@ export function WarBoundCreatorPage() {
       </div>
     </section>
     <section className="wbc-controls">
-      <div className="wbc-base-settings">
+      <div className="wbc-base-settings column">
         <div className="wbc-select-armour"></div>
-        <div className="wbc-select-colors"></div>
+        <div className="wbc-select-colors row">
+          <div className="wbc-bg-color-select row">
+            <div className="label">Background</div>
+            <SmallColorPicker color={bgHex} onChange={setBgHex}/>
+
+          </div>
+          <div className="wbc-border-color-select row">
+            <div className="label">Border</div>
+            <SmallColorPicker color={bordersHex} onChange={setBordersHex}/>
+          </div>
+          <div className="wbc-glow-color-select row">
+            <div className="label">Glow</div>
+            <div className="color"/>
+          </div>
+          <div className="wbc-header-bg1-color-select row">
+            <div className="label">header bg primary</div>
+            <div className="color"/>
+          </div>
+          <div className="wbc-header-bg2-color-select row">
+            <div className="label">header bg primary secondary</div>
+            <div className="color"/>
+          </div>
+        </div>
       </div>
       <button className="add-item"
               onClick={addItem}>
