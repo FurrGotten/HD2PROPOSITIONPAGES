@@ -99,10 +99,13 @@ export function WarBoundCreatorPage() {
   return <section className="wbc-page-base">
     <section className="warbound-frame"
              style={{backgroundColor: bgHex, backgroundImage: `url(${getImageUrl('warbond-bg')}`}}>
-      < div className="warbond-header">
+      <div className="warbond-header">
         <div className="line line-left"></div>
         <span className="text">PREMIUM WARBOND</span>
         <div className="line line-right"></div>
+      </div>
+      <div className="warbond-img-header">
+        {getImageUrl('header') && <img src={getImageUrl('header') || ''} alt="Armour" />}
       </div>
       <div className="wb-content">
         <div className="wb-armor">
@@ -212,7 +215,6 @@ export function WarBoundCreatorPage() {
           <div className="wbc-bg-color-select row">
             <div className="label">Background</div>
             <SmallColorPicker color={bgHex} onChange={setBgHex} />
-
           </div>
           <div className="wbc-border-color-select row">
             <div className="label">Border</div>
