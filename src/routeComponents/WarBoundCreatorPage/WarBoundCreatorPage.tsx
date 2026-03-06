@@ -1,15 +1,20 @@
-import { useState }  from 'react';
-import './WarBoundCreatorPageStyle.css';
+import {useState} from 'react';
 import {SmallColorPicker} from '@/components';
+import {useLiveQuery} from 'dexie-react-hooks';
+import {db} from './components/db';
+
+import './WarBoundCreatorPageStyle.css';
+
+interface subItemType {
+  id: string;
+  slug: string; // Used to link to IndexedDB
+}
 
 interface itemType {
   id: string;
   header: string;
   width: number;
-  subitems: {
-    name: string;
-    image: any;
-  }[];
+  subitems: subItemType[];
 }
 
 type itemsType = itemType[];
@@ -21,16 +26,26 @@ export function WarBoundCreatorPage() {
   const [bgHex, setBgHex] = useState('#1a2327');
   const [bordersHex, setBordersHex] = useState('#ff3131');
   // const [glowHex, setGlowHex] = useState('#ff3131');
-  // const [headerBg1Hex, setHeaderBg1Hex] = useState('#1a1d21');
-  // const [headerBg2Hex, setHeaderBg2Hex] = useState('#25282c');
+  const [headerBg1Hex, setHeaderBg1Hex] = useState('#1a1d21');
+  const [headerBg2Hex, setHeaderBg2Hex] = useState('#25282c');
+
+  // Inside your component:
+  const allAssets = useLiveQuery(() => db.assets.toArray());
+
+  // Helper to get URL for a specific part of the page
+  const getImageUrl = (slug: string) => {
+    const asset = allAssets?.find(a => a.slug === slug);
+    return asset ? URL.createObjectURL(asset.blob) : null;
+  };
 
   // --- Helper Functions for State ---
   const addItem = () => {
+    const id = crypto.randomUUID()
     const newItem: itemType = {
-      id: crypto.randomUUID(), // Generates a unique ID
+      id,
       header: 'NEW ITEM',
       width: 15,
-      subitems: [{name: 'test', image: ''}]
+      subitems: []
     };
     setItems([...items, newItem]);
   };
@@ -47,16 +62,56 @@ export function WarBoundCreatorPage() {
     ));
   };
 
+  const addSubItem = (parentId: string) => {
+    setItems(items.map(item => {
+      if (item.id === parentId) {
+        const subId = crypto.randomUUID();
+        return {
+          ...item,
+          subitems: [...item.subitems, {
+            id: subId,
+            slug: `subitem-${subId}`
+          }]
+        };
+      }
+      return item;
+    }));
+  };
+
+  const deleteSubItem = async (parentId: string, subItem: subItemType) => {
+    try {
+      await db.assets.where('slug').equals(subItem.slug).delete();
+
+      setItems(prevItems => prevItems.map(item => {
+        if (item.id === parentId) {
+          return {
+            ...item,
+            subitems: item.subitems.filter(si => si.id !== subItem.id)
+          };
+        }
+        return item;
+      }));
+    } catch (error) {
+      console.error("Failed to delete sub-item image:", error);
+    }
+  };
+
   return <section className="wbc-page-base">
-    <section className="warbound-frame" style={{backgroundColor: bgHex}}>
-      <div className="warbond-header">
+    <section className="warbound-frame"
+             style={{backgroundColor: bgHex, backgroundImage: `url(${getImageUrl('warbond-bg')}`}}>
+      < div className="warbond-header">
         <div className="line line-left"></div>
         <span className="text">PREMIUM WARBOND</span>
         <div className="line line-right"></div>
       </div>
       <div className="wb-content">
         <div className="wb-armor">
-          <div className="frame-banner">
+          <div className="frame-banner" style={{
+            background: `repeating-linear-gradient(
+              135deg,
+            ${headerBg1Hex}, /* Start dark */ ${headerBg1Hex} 10px, /* End dark  */ ${headerBg2Hex} 10px, /* Start light */ ${headerBg2Hex} 15px
+            )`
+          }}>
             <span className="frame-banner-text">ARMOR SETS</span>
           </div>
           <div className="wb-armor-frame" style={{
@@ -67,17 +122,22 @@ export function WarBoundCreatorPage() {
             transparent 35%,
             transparent 65%,
             ${bordersHex} 65%
-            ) 1`,
+            ) 1`
           }}>
             <div className="wb-armor-inner">
-
+              {getImageUrl('armour-main') && <img src={getImageUrl('armour-main') || ''} alt="Armour" />}
             </div>
           </div>
         </div>
         <div className="wb-items">
           {items.map((item, index) => (
             <div className="wb-item" style={{width: item.width + '%'}} key={index + '-header'}>
-              <div className="frame-banner">
+              <div className="frame-banner" style={{
+                background: `repeating-linear-gradient(
+              135deg,
+            ${headerBg1Hex}, /* Start dark */ ${headerBg1Hex} 10px, /* End dark  */ ${headerBg2Hex} 10px, /* Start light */ ${headerBg2Hex} 15px
+            )`
+              }}>
                 <span className="frame-banner-text">{item.header}</span>
               </div>
               <div className="wb-item-frame" style={{
@@ -91,7 +151,13 @@ export function WarBoundCreatorPage() {
                 ) 1`
               }}>
                 <div className="wb-item-inner">
-
+                  {item.subitems.map((sub) => (
+                    <div key={sub.id} className="subitem-preview-wrapper"  style={{width: 100 / item.subitems.length + '%'}} >
+                      {getImageUrl(sub.slug) && (
+                        <img src={getImageUrl(sub.slug)!} alt="Item" className="subitem-img"/>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -101,28 +167,68 @@ export function WarBoundCreatorPage() {
     </section>
     <section className="wbc-controls">
       <div className="wbc-base-settings column">
-        <div className="wbc-select-armour"></div>
+        <div className="wbc-select-basics row">
+          <div className="wbc-select-part column">
+            <label>Upload Armour Image:</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  await db.assets.put({slug: 'armour-main', blob: file});
+                }
+              }}
+            />
+          </div>
+          <div className="wbc-select-part column">
+            <label>Upload BG Image:</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  await db.assets.put({slug: 'warbond-bg', blob: file});
+                }
+              }}
+            />
+          </div>
+          <div className="wbc-select-part column">
+            <label>Upload Header Image:</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={async (e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  await db.assets.put({slug: 'header', blob: file});
+                }
+              }}
+            />
+          </div>
+        </div>
         <div className="wbc-select-colors row">
           <div className="wbc-bg-color-select row">
             <div className="label">Background</div>
-            <SmallColorPicker color={bgHex} onChange={setBgHex}/>
+            <SmallColorPicker color={bgHex} onChange={setBgHex} />
 
           </div>
           <div className="wbc-border-color-select row">
             <div className="label">Border</div>
-            <SmallColorPicker color={bordersHex} onChange={setBordersHex}/>
+            <SmallColorPicker color={bordersHex} onChange={setBordersHex} />
           </div>
           <div className="wbc-glow-color-select row">
             <div className="label">Glow</div>
-            <div className="color"/>
+            <div className="color" />
           </div>
           <div className="wbc-header-bg1-color-select row">
             <div className="label">header bg primary</div>
-            <div className="color"/>
+            <SmallColorPicker color={headerBg1Hex} onChange={setHeaderBg1Hex} />
           </div>
           <div className="wbc-header-bg2-color-select row">
-            <div className="label">header bg primary secondary</div>
-            <div className="color"/>
+            <div className="label">header bg secondary</div>
+            <SmallColorPicker color={headerBg2Hex} onChange={setHeaderBg2Hex} />
           </div>
         </div>
       </div>
@@ -146,6 +252,27 @@ export function WarBoundCreatorPage() {
               </div>
             </div>
             <button className="delete-button" onClick={() => deleteItem(item.id)}>X</button>
+            <button onClick={() => addSubItem(item.id)}>+ SUB ITEM</button>
+            <div className="subitem-settings-list row">
+              {item.subitems.map((subitem) => (
+                <div className="wbc-subitem space-between column" key={subitem.id}>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (file) await db.assets.put({ slug: subitem.slug, blob: file });
+                    }}
+                  />
+                  <button
+                    className="delete-sub-btn"
+                    onClick={() => deleteSubItem(item.id, subitem)}
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         ))}
       </div>

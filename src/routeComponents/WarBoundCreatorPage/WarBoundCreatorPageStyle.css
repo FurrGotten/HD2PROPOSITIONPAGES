@@ -1,8 +1,4 @@
 .wbc-page-base {
-    font-family: 'Inter', sans-serif;
-    font-weight: 900;
-
-
     .wbc-controls {
         margin-top: 20px;
         padding: 10px;
@@ -11,12 +7,21 @@
             width: 100%;
             padding: 10px;
 
+            .wbc-select-basics {
+                margin-bottom: 20px;
+            }
+
             .wbc-select-colors {
                 width: 100%;
-                gap: 40px;
+
+                .row {
+                    margin-right: 30px;
+                }
+
                 div {
                     align-items: center;
                 }
+
                 .label {
                     margin-right: 10px;
                 }
@@ -33,6 +38,14 @@
             .wbc-item-settings-row {
                 border: 2px solid #ccc;
                 padding: 10px;
+
+                .subitem-settings-list {
+                    gap: 10px;
+                    margin-left: 10px;
+                    .wbc-subitem {
+                        gap: 10px;
+                    }
+                }
 
                 .item-base-settings {
                     max-width: 15%;
@@ -64,6 +77,8 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        background-position: center;
+        background-size: cover;
 
         .warbond-header {
             display: flex;
@@ -123,6 +138,17 @@
                             background-color: rgba(0, 0, 0, 0.2);
                             backdrop-filter: blur(8px);
                             -webkit-backdrop-filter: blur(8px);
+                            display: flex;
+                            .subitem-preview-wrapper {
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                img {
+                                    max-height: 100%;
+                                    width: 100%;
+                                }
+                            }
                         }
                     }
                 }
@@ -135,12 +161,20 @@
                 .wb-armor-frame {
                     padding: 10px;
                     height: -webkit-fill-available;
+
                     .wb-armor-inner {
                         width: 100%;
                         height: 100%;
                         background-color: rgba(0, 0, 0, 0.2);
                         backdrop-filter: blur(8px);
                         -webkit-backdrop-filter: blur(8px);
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        img {
+                            max-width: 90%;
+                            max-height: 100%;
+                        }
                     }
                 }
             }
@@ -152,10 +186,6 @@
                 height: 80px;
                 margin-bottom: 10px;
                 width: 100%;
-                background: repeating-linear-gradient(
-                        135deg,
-                        #1a1d21, /* Start dark */ #1a1d21 10px, /* End dark  */ #25282c 10px, /* Start light */ #25282c 15px
-                );
             }
 
             .frame-banner-text {
