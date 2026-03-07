@@ -201,9 +201,7 @@ export function WarBoundCreatorPage() {
         <span className="text">{legendary ? 'LEGENDARY' : 'PREMIUM'} WARBOND</span>
         <div className="line line-right"></div>
       </div>
-      <div className="warbond-img-header">
-        {getImageUrl('header') && <img src={getImageUrl('header') || ''} alt="Armour" />}
-      </div>
+      <div className="warbond-img-header" style={{backgroundImage: `url(${getImageUrl('header')}`}}/>
       <div className="wb-content">
         <div className="wb-armor">
           <div className="frame-banner" style={{
