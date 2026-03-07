@@ -10,12 +10,12 @@ export function HomePage() {
     <div className="static-bg" />
     <div className="content">
       <div className="menu-row">
-        <Link className="menu-link" to="/spear">
+        <Link className="menu-link" to="spear">
           <Hologram>
             <img src={SpearIcon} alt="FAF-SPEAR" />
           </Hologram>
         </Link>
-        <Link className="menu-link" to="/close_sky_project">
+        <Link className="menu-link" to="close_sky_project">
           <Hologram>
             <div className="menu-noise-ico gray-noise" />
           </Hologram>
@@ -23,7 +23,14 @@ export function HomePage() {
       </div>
       <div className="menu-row">
         <div className="menu-link">
-          {/*<Link to="/">Home</Link>*/}
+          <Link className="menu-link" to="warbound_maker">
+            <Hologram>
+              <div className="wb-maker-link">
+                WR
+                MAKER
+              </div>
+            </Hologram>
+          </Link>
         </div>
       </div>
     </div>

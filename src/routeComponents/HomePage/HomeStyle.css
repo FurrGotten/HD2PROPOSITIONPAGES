@@ -40,6 +40,11 @@
                     /*border: 1px solid #005500;*/
                     /*box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.2);*/
                 }
+                .wb-maker-link {
+                    font-size: 100px;
+                    text-align: center;
+                    color: var(--hd2-gold-primary);
+                }
             }
             .menu-link, img {
                 max-width: 90vw;
