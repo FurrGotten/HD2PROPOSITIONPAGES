@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {SmallColorPicker} from '@/components';
 import {useLiveQuery} from 'dexie-react-hooks';
 import {db} from './components/db';
@@ -22,10 +22,9 @@ interface itemType {
 type itemsType = itemType[];
 
 export function WarBoundCreatorPage() {
+  // --- States ---
   const [items, setItems] = useState<itemsType>([]);
-
   const [legendary, setLegendary] = useState(false);
-
   const [firstArmourText, setFirstArmourText] = useState('');
   const [secondArmourText, setSecondArmourText] = useState('');
   const [bgHex, setBgHex] = useState('#1a2327');
@@ -33,9 +32,58 @@ export function WarBoundCreatorPage() {
   const [glowHex, setGlowHex] = useState('#ff3131');
   const [headerBg1Hex, setHeaderBg1Hex] = useState('#1a1d21');
   const [headerBg2Hex, setHeaderBg2Hex] = useState('#25282c');
+  const [isLoaded, setIsLoaded] = useState(false); // New guard state
 
   const allAssets = useLiveQuery(() => db.assets.toArray());
 
+// 1. INITIAL LOAD
+  useEffect(() => {
+    const loadSavedData = async () => {
+      try {
+        const saved = await db.project.get('current');
+        if (saved) {
+          setItems(saved.items);
+          setLegendary(saved.legendary);
+          setFirstArmourText(saved.firstArmourText);
+          setSecondArmourText(saved.secondArmourText);
+          setBgHex(saved.bgHex);
+          setBordersHex(saved.bordersHex);
+          setGlowHex(saved.glowHex);
+          setHeaderBg1Hex(saved.headerBg1Hex);
+          setHeaderBg2Hex(saved.headerBg2Hex);
+        }
+      } catch (err) {
+        console.error('Load failed', err);
+      } finally {
+        setIsLoaded(true); // Signal that loading is done
+      }
+    };
+    loadSavedData();
+  }, []);
+
+  // 2. AUTO-SAVE (With Guard)
+  useEffect(() => {
+    // IMPORTANT: If we haven't finished loading, do NOT save
+    // or we will overwrite the DB with empty defaults!
+    if (!isLoaded) return;
+
+    db.project.put({
+      id: 'current',
+      items,
+      legendary,
+      firstArmourText,
+      secondArmourText,
+      bgHex,
+      bordersHex,
+      glowHex,
+      headerBg1Hex,
+      headerBg2Hex
+    });
+  }, [isLoaded, items, legendary, firstArmourText, secondArmourText, bgHex, bordersHex, glowHex, headerBg1Hex, headerBg2Hex]);
+
+  // If not loaded yet, you might want to show a spinner or return null
+  // to prevent flickering
+  if (!isLoaded) return <div className="loading-screen">INITIALIZING WARBOND...</div>;
   // Helper to get URL for a specific part of the page
   const getImageUrl = (slug: string) => {
     const asset = allAssets?.find(a => a.slug === slug);
