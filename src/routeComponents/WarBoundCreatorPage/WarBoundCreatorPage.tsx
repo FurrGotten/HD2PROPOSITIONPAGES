@@ -23,6 +23,7 @@ type itemsType = itemType[];
 
 export function WarBoundCreatorPage() {
   // --- States ---
+  const [settingOpen, setSettingOpen] = useState(true);
   const [items, setItems] = useState<itemsType>([]);
   const [legendary, setLegendary] = useState(false);
   const [firstArmourText, setFirstArmourText] = useState('');
@@ -193,7 +194,7 @@ export function WarBoundCreatorPage() {
   };
 
   return <section className="wbc-page-base">
-    <section className="warbound-frame"
+    <section className="warbound-frame" onClick={() => setSettingOpen(!settingOpen)}
              style={{backgroundColor: bgHex, backgroundImage: `url(${getImageUrl('warbond-bg')}`}}>
       <img className="hd-full-logo" src={HD2FULLICON} alt="HD2" />
       <div className={`warbond-header ${legendary && 'legendary'}`}>
@@ -277,7 +278,7 @@ export function WarBoundCreatorPage() {
         </div>
       </div>
     </section>
-    <section className="wbc-controls">
+    {settingOpen && <section className="wbc-controls">
       <div className="wbc-base-settings column">
         <div className="wbc-select-basics space-between row">
           <div className="wbc-select-part column">
@@ -435,6 +436,6 @@ export function WarBoundCreatorPage() {
           RESET ALL DATA
         </button>
       </div>
-    </section>
+    </section>}
   </section>;
 }
