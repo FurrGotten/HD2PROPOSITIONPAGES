@@ -42,6 +42,7 @@
                 .subitem-settings-list {
                     gap: 10px;
                     margin-left: 10px;
+
                     .wbc-subitem {
                         gap: 10px;
                     }
@@ -79,13 +80,12 @@
         align-items: center;
         background-position: center;
         background-size: cover;
-
-        .warbond-header {
-            display: flex;
-            align-items: center;
-            padding: 40px 40px 10px;
-            width: 34%;
-            gap: 15px;
+        position: relative;
+        .hd-full-logo {
+            position: absolute;
+            top: 3%;
+            left: 2%;
+            width: 10%;
         }
 
         .warbond-img-header {
@@ -94,11 +94,23 @@
             display: flex;
             justify-content: center;
             padding-bottom: 20px;
-            img {height: 100%; max-width: 100%;}
+
+            img {
+                height: 100%;
+                max-width: 100%;
+            }
+        }
+
+        .warbond-header {
+            display: flex;
+            align-items: center;
+            padding: 40px 40px 10px;
+            width: 45%;
+            gap: 15px;
         }
 
         .line {
-            height: 4px;
+            height: 6px;
             background-color: #d1d5db;
             flex-grow: 1;
         }
@@ -109,6 +121,30 @@
 
         .line-right {
             clip-path: polygon(0 0, 100% 0, calc(100% - 4px) 100%, 0 100%);
+        }
+
+        .warbond-header.legendary .text {
+            background: linear-gradient(
+                    to bottom,
+                    var(--hd2-gold-shine) 0%,
+                    var(--hd2-gold-primary) 50%,
+                    var(--hd2-gold-dark) 100%
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 8px var(--hd2-gold-glow));
+            font-weight: 900;
+        }
+
+        .warbond-header.legendary .line {
+            background: linear-gradient(
+                    to right,
+                    var(--hd2-gold-shine) 0%,
+                    var(--hd2-gold-primary) 50%,
+                    var(--hd2-gold-dark) 100%
+            );
+            box-shadow: 0 0 10px var(--hd2-gold-glow);
         }
 
         .text {
@@ -124,6 +160,13 @@
             justify-content: space-between;
             width: 90%;
             gap: 1.7%;
+
+            .sub-item-label {
+                padding: 10px;
+                font-weight: 300;
+                letter-spacing: 0.15em;
+                line-height: 1.1;
+            }
 
             .wb-items {
                 width: 70%;
@@ -148,14 +191,23 @@
                             backdrop-filter: blur(8px);
                             -webkit-backdrop-filter: blur(8px);
                             display: flex;
+
                             .subitem-preview-wrapper {
                                 height: 100%;
                                 display: flex;
                                 justify-content: center;
                                 align-items: center;
-                                img {
-                                    max-height: 100%;
+
+                                .sub-item {
                                     width: 100%;
+                                    height: 100%;
+                                    background-size: contain;
+                                    background-position: center;
+                                    background-repeat: no-repeat;
+                                    text-align: center;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: end;
                                 }
                             }
                         }
@@ -180,9 +232,17 @@
                         display: flex;
                         justify-content: center;
                         align-items: center;
-                        img {
-                            max-width: 90%;
-                            max-height: 100%;
+
+                        .bg-image-holder {
+                            width: 100%;
+                            height: 100%;
+                            background-size: contain;
+                            background-position: center;
+                            background-repeat: no-repeat;
+                            display: flex;
+                            justify-content: space-around;
+                            align-items: end;
+                            padding-bottom: 30px;
                         }
                     }
                 }

@@ -4,6 +4,10 @@
     --hd-bg: #0a0a0a;
     --hd-bg-l: #272727;
     --hd-text: #e1e1e1;
+    --hd2-gold-primary: #f2e266;
+    --hd2-gold-shine: #fff9d1;
+    --hd2-gold-dark: #b8a03d;
+    --hd2-gold-glow: rgba(242, 226, 102, 0.4);
 
     font-family: 'Roboto Condensed', 'Inter', 'Impact', sans-serif;
     line-height: 1.2;
