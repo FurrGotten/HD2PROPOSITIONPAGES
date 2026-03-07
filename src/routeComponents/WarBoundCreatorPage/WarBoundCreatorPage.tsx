@@ -163,6 +163,35 @@ export function WarBoundCreatorPage() {
     }
   };
 
+  const resetProject = async () => {
+    const confirmReset = window.confirm("Are you sure? This will delete all images and settings.");
+    if (!confirmReset) return;
+
+    try {
+      // 1. Clear IndexedDB Tables
+      await Promise.all([
+        db.project.clear(),
+        db.assets.clear()
+      ]);
+
+      // 2. Reset React States to Defaults
+      setItems([]);
+      setLegendary(false);
+      setFirstArmourText('');
+      setSecondArmourText('');
+      setBgHex('#1a2327');
+      setBordersHex('#ff3131');
+      setGlowHex('#ff3131');
+      setHeaderBg1Hex('#1a1d21');
+      setHeaderBg2Hex('#25282c');
+
+      // Optional: Force a page reload to ensure all Blob URLs are revoked
+      // window.location.reload();
+    } catch (error) {
+      console.error("Failed to reset project:", error);
+    }
+  };
+
   return <section className="wbc-page-base">
     <section className="warbound-frame"
              style={{backgroundColor: bgHex, backgroundImage: `url(${getImageUrl('warbond-bg')}`}}>
@@ -388,6 +417,25 @@ export function WarBoundCreatorPage() {
             </div>
           </div>
         ))}
+      </div>
+      <div className="wbc-danger-zone">
+        <button
+          className="reset-button"
+          onClick={resetProject}
+          style={{
+            marginTop: '200px',
+            marginBottom: '20px',
+            backgroundColor: '#ff3131',
+            color: 'white',
+            padding: '10px 20px',
+            border: 'none',
+            cursor: 'pointer',
+            fontWeight: 'bold',
+            width: '100%'
+          }}
+        >
+          RESET ALL DATA
+        </button>
       </div>
     </section>
   </section>;
