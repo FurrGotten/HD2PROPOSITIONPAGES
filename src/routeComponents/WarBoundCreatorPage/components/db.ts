@@ -6,9 +6,8 @@ export interface ImageAsset {
   blob: Blob;
 }
 
-// New interface for your project state
 export interface ProjectState {
-  id: string; // We'll use "current"
+  id: string;
   items: any[];
   legendary: boolean;
   firstArmourText: string;
@@ -22,10 +21,15 @@ export interface ProjectState {
 
 export const db = new Dexie('HD2CreatorDB') as Dexie & {
   assets: EntityTable<ImageAsset, 'id'>;
-  project: EntityTable<ProjectState, 'id'>; // New table
+  project: EntityTable<ProjectState, 'id'>;
 };
 
 db.version(1).stores({
   assets: '++id, &slug',
-  project: 'id' // Primary key is just 'id'
+  project: 'id'
+});
+
+// This is the TS-safe way to catch global database errors
+db.on('close', (err) => {
+  console.warn("Dexie Database Error:", err);
 });
