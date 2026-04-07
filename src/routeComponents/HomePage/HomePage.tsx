@@ -22,16 +22,22 @@ export function HomePage() {
         </Link>
       </div>
       <div className="menu-row">
-        <div className="menu-link">
-          <Link className="menu-link" to="warbound_maker">
-            <Hologram>
-              <div className="wb-maker-link">
-                WR
-                MAKER
-              </div>
-            </Hologram>
-          </Link>
-        </div>
+        <Link className="menu-link" to="warbound_maker">
+          <Hologram>
+            <div className="wb-maker-link">
+              WR
+              MAKER
+            </div>
+          </Hologram>
+        </Link>
+        <Link className="menu-link" to="custom_slides">
+          <Hologram>
+            <div className="wb-maker-link">
+              SLIDE
+              MAKER
+            </div>
+          </Hologram>
+        </Link>
       </div>
     </div>
   </section>;

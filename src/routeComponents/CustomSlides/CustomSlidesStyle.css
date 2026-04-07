@@ -1,0 +1,59 @@
+.slides-page-base {
+    width: 100vw;
+    .static-bg {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        background-image: url('/src/assets/HD2_TV_bg.png');
+        background-size: cover;
+        background-position: center;
+    }
+
+    .content {
+        overflow-x: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+.simple-slides-page-base {
+    .static-bg {
+        background-image: none;
+    }
+    .content {
+        padding-top: 50px;
+        padding-bottom: 70px;
+    }
+}
+
+.editor-toggle-btn {
+    position: fixed;
+    width: 100vw;
+    height: 15vh;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.slide-editor-sidebar {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 350px;
+    height: 100vh;
+    background: rgba(10, 15, 20, 0.95);
+    border-left: 2px solid #ff3131;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1200;
+}
+
+.full-width { width: 100%; }
+.file-upload-zone { margin-top: 10px; font-size: 0.8rem; }
