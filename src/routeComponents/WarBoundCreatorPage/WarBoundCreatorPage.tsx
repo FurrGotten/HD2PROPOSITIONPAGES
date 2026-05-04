@@ -34,6 +34,7 @@ export function WarBoundCreatorPage() {
   const [headerBg1Hex, setHeaderBg1Hex] = useState('#1a1d21');
   const [headerBg2Hex, setHeaderBg2Hex] = useState('#25282c');
   const [isLoaded, setIsLoaded] = useState(false);
+  const [HDLogoVisible, setHDLogoVisible] = useState(true);
 
   // --- Asset URL Management ---
   const allAssets = useLiveQuery(() => db.assets.toArray());
@@ -59,6 +60,7 @@ export function WarBoundCreatorPage() {
         if (saved) {
           setItems(saved.items || []);
           setLegendary(saved.legendary);
+          setHDLogoVisible(saved.HDLogoVisible);
           setFirstArmourText(saved.firstArmourText);
           setSecondArmourText(saved.secondArmourText);
           setBgHex(saved.bgHex);
@@ -89,6 +91,7 @@ export function WarBoundCreatorPage() {
         id: 'current',
         items,
         legendary,
+        HDLogoVisible,
         firstArmourText,
         secondArmourText,
         bgHex,
@@ -105,7 +108,7 @@ export function WarBoundCreatorPage() {
     }, 1000); // Increased to 1s to give the UI breathing room
 
     return () => clearTimeout(timeout);
-  }, [isLoaded, items, legendary, firstArmourText, secondArmourText, bgHex, bordersHex, glowHex, headerBg1Hex, headerBg2Hex]);
+  }, [isLoaded, items, legendary, HDLogoVisible, firstArmourText, secondArmourText, bgHex, bordersHex, glowHex, headerBg1Hex, headerBg2Hex]);
 
   // --- Original Helper Functions ---
   const addItem = () => {
@@ -194,6 +197,7 @@ export function WarBoundCreatorPage() {
       // 2. Reset React States to Defaults
       setItems([]);
       setLegendary(false);
+      setHDLogoVisible(true);
       setFirstArmourText('');
       setSecondArmourText('');
       setBgHex('#1a2327');
@@ -218,7 +222,7 @@ export function WarBoundCreatorPage() {
         onClick={() => setSettingOpen(!settingOpen)}
         style={{ backgroundColor: bgHex, backgroundImage: assetUrls['warbond-bg'] ? `url(${assetUrls['warbond-bg']})` : 'none' }}
       >
-        <img className="hd-full-logo" src={HD2FULLICON} alt="HD2" />
+        {HDLogoVisible && <img className="hd-full-logo" src={HD2FULLICON} alt="HD2" />}
 
         <div className={`warbond-header ${legendary && 'legendary'}`}>
           <div className="line line-left"></div>
@@ -291,6 +295,10 @@ export function WarBoundCreatorPage() {
               <div className="column">
                 <label>Legendary</label>
                 <input type="checkbox" checked={legendary} onChange={(e) => setLegendary(e.target.checked)} />
+              </div>
+              <div className="column">
+                <label>Visible Logo</label>
+                <input type="checkbox" checked={HDLogoVisible} onChange={(e) => setHDLogoVisible(e.target.checked)} />
               </div>
             </div>
             <div className="wbc-select-colors row">

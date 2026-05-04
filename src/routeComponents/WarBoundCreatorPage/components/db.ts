@@ -10,6 +10,7 @@ export interface ProjectState {
   id: string;
   items: any[];
   legendary: boolean;
+  HDLogoVisible: boolean;
   firstArmourText: string;
   secondArmourText: string;
   bgHex: string;
